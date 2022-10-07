@@ -107,6 +107,16 @@
                 var max_hour = (wd == 0 || wd == 6) ? 18 : 13;
                 console.log(wd);
                 console.log(max_hour);
+                for (let h = 6; h < 8; h++) {
+                    var pCardTemp = pCard.clone();
+                    ZLplace.forEach(p => {
+                        var link =
+                            `<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=${p.no}&QTime=${h}&PT=1&D=${d}">${p.name}</a>`;
+                        pCardTemp.find('.court').append(link + "<br>");
+                        pCardTemp.find('.card-title').html(`${d} ${h}:00`)
+                        pCardTemp.appendTo('#DA');
+                    });
+                }
                 for (let h = 19; h < 23; h++) {
                     var pCardTemp = pCard.clone();
                     ZLplace.forEach(p => {
