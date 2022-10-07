@@ -42,7 +42,7 @@
                         <div class="col-6 col-lg-4 card-wrap">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h4 class="card-title"></h4>
+                                    <h5 class="card-title"></h5>
                                     <div class="court"></div>
                                 </div>
                             </div>
@@ -103,13 +103,13 @@
                 $('.card-wrap').remove();
                 e.preventDefault();
                 var d = $(this).val().replace(/-/g, "/");
-                for (let h = 19; h < 23; h++) {
+                for (let h = 19; h < 22; h++) {
                     var pCardTemp = pCard.clone();
                     ZLplace.forEach(p => {
                         var link =
                             `<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=${p.no}&QTime=${h}&PT=1&D=${d}">${p.name}</a>`;
                         pCardTemp.find('.court').append(link + "<br>");
-                        pCardTemp.find('.card-title').html(`${d} ${h}:00`)
+                        pCardTemp.find('.card-title').html(`${d} ${h}:00~${h+1}:00`)
                         pCardTemp.appendTo('#ZL');
                     });
                 }
