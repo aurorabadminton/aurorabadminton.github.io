@@ -14,9 +14,10 @@
             <div class="col-12">
                 <div class="alert alert-primary" role="alert">
                     <ul class="m-0">
-                        <li class="text-danger">請先在新的視窗分頁登入<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx">中壢運動中心</a>後才可點選場地預約連結
+                        <li class="text-danger">請先在新的視窗分頁登入<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx">中壢運動中心</a>後方可繼續
                         </li>
                         <li>選擇日期後會自動產生各預約連結</li>
+                        <li>點擊連結即下訂，預訂成功後請另行至官網繳費</li>
                         <li>凌晨 00:00 過後可以預約日期為 <span id="target-date"></span></li>
                         <li class="text-danger">現在時間：<span id="clock"></span>
                         </li>
@@ -27,7 +28,6 @@
                 <div class="mb-3">
                     <input type="date" class="form-control" id="date">
                 </div>
-                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
             </form>
         </div>
         <div class="row">
@@ -38,7 +38,7 @@
             </ul>
             <div class="tab-content p-3" id="myTabContent">
                 <div class="tab-pane fade show active" id="zhongli" role="tabpanel" aria-labelledby="zhongli-tab">
-                    <div id="DA" class="row">
+                    <div id="ZL" class="row">
                         <div class="col-6 col-lg-4 card-wrap">
                             <div class="card mb-3">
                                 <div class="card-body">
@@ -61,19 +61,19 @@
             name: '羽Ａ'
         }, {
             no: 1174,
-            name: '羽 Ｂ'
+            name: '羽Ｂ'
         }, {
             no: 1176,
-            name: '羽 C'
+            name: '羽Ｃ'
         }, {
             no: 1192,
-            name: '羽 D'
+            name: '羽Ｄ'
         }, {
             no: 1193,
-            name: '羽 E'
+            name: '羽Ｅ'
         }, {
             no: 1194,
-            name: '羽 F'
+            name: '羽Ｆ'
         }, {
             no: 1205 ,
             name: '羽加1'
@@ -103,20 +103,6 @@
                 $('.card-wrap').remove();
                 e.preventDefault();
                 var d = $(this).val().replace(/-/g, "/");
-                var wd = new Date($(this).val()).getDay();
-                var max_hour = (wd == 0 || wd == 6) ? 18 : 13;
-                console.log(wd);
-                console.log(max_hour);
-                for (let h = 6; h < 8; h++) {
-                    var pCardTemp = pCard.clone();
-                    ZLplace.forEach(p => {
-                        var link =
-                            `<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=${p.no}&QTime=${h}&PT=1&D=${d}">${p.name}</a>`;
-                        pCardTemp.find('.court').append(link + "<br>");
-                        pCardTemp.find('.card-title').html(`${d} ${h}:00`)
-                        pCardTemp.appendTo('#DA');
-                    });
-                }
                 for (let h = 19; h < 23; h++) {
                     var pCardTemp = pCard.clone();
                     ZLplace.forEach(p => {
@@ -124,12 +110,10 @@
                             `<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=${p.no}&QTime=${h}&PT=1&D=${d}">${p.name}</a>`;
                         pCardTemp.find('.court').append(link + "<br>");
                         pCardTemp.find('.card-title').html(`${d} ${h}:00`)
-                        pCardTemp.appendTo('#DA');
+                        pCardTemp.appendTo('#ZL');
                     });
                 }
             });
-
-            $('#date').trigger('change');
         });
 
 
