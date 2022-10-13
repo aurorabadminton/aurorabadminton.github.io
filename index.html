@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,8 +96,9 @@
             var day = date1.getDay();
 
             var td = date1.toLocaleDateString("zh-TW");
+            var tdate = date1.toISOString().substring(0, 10);
 
-            $('#date').val(td);
+            $('#date').val(tdate);
             $("#target-date").html(td+"(" + day_list[day] + ")")
 
             $('#date').change(function(e) {
@@ -113,7 +115,9 @@
                         pCardTemp.appendTo('#ZL');
                     });
                 }
+               
             });
+            $('#date').trigger('change');
         });
 
 
