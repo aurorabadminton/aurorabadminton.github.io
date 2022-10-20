@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,15 +15,16 @@
         <div class="row">
             <div class="col-12">
                 <div class="alert alert-primary" role="alert">
-                    <ul class="m-0">
-                        <li class="text-danger">請先在新的視窗分頁登入<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx">中壢運動中心</a>後方可繼續
+                <li>使用方法：</li>
+                    <ol class="m-0">
+                        <li>在新的視窗分頁登入<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx">[中壢運動中心]</a>
                         </li>
-                        <li>選擇日期後會自動產生各預約連結</li>
-                        <li>點擊連結即下訂，預訂成功後請另行至官網繳費</li>
-                        <li>凌晨 00:00 過後可以預約日期為 <span id="target-date"></span></li>
+                        <li>選擇日期</li>
+                        <li>待開放時間到再點場地連結(點擊即刻下訂)</li>
+                    </ol><br>
+                    <li>凌晨 00:00 過後可以預約日期為 <span id="target-date"></span></li>
                         <li class="text-danger">現在時間：<span id="clock"></span>
                         </li>
-                    </ul>
                 </div>
             </div>
             <form class="col-12 col-sm-3 form-inline">
@@ -106,6 +108,17 @@
                 e.preventDefault();
                 var d = $(this).val().replace(/-/g, "/");
                 for (let h = 19; h < 22; h++) {
+                    var pCardTemp = pCard.clone();
+                    ZLplace.forEach(p => {
+                        var link =
+                            `<a target="_blank" href="https://scr.cyc.org.tw/tp15.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=${p.no}&QTime=${h}&PT=1&D=${d}">${p.name}</a>`;
+                        pCardTemp.find('.court').append(link + "<br>");
+                        pCardTemp.find('.card-title').html(`${d} ${h}:00~${h+1}:00`)
+                        pCardTemp.appendTo('#ZL');
+                    });
+                }
+                
+                for (let h = 9; h < 18; h++) {
                     var pCardTemp = pCard.clone();
                     ZLplace.forEach(p => {
                         var link =
